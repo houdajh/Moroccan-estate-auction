@@ -5,4 +5,5 @@ export class User {
     adresse?:string;
     phone?:string;
     password?:string;
+    role?:boolean
 }

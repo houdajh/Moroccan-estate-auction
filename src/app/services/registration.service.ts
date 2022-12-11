@@ -3,6 +3,8 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../model/user.model';
+import { Login } from '../model/login.model';
+import { Appuser } from '../model/appuser.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,11 +15,16 @@ export class RegistrationService {
 
   constructor(private http:HttpClient) { }
   public getUser():Observable<any>{
-    return this.http.get<any>(`${this.apiServerURL}/`)
+    return this.http.get<any>(`${this.apiServerURL}/api/v1/registration/username`)
   }
   public addUser(user: User): Observable<User> {
     return this.http.post<User>(`${this.apiServerURL}/api/v1/registration/add`, user);
   }
 
+  public loginUser(login: Login): Observable<User> {
+    console.log(login.usernameOrEmail+"nkljkljlknhjkhjk")
+    return this.http.post<Login>(`${this.apiServerURL}/api/v1/registration/signin`, login);
+  }
+ 
 
 }
