@@ -11,6 +11,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {MatInputModule} from '@angular/material/input';
 import { MatButtonModule, MatFormFieldModule, MatIconModule, MatListModule, MatOptionModule, MatRippleModule, MatSelectModule, MatSidenavModule, MatStepperModule, MatToolbarModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DashsellerComponent } from './dashseller/dashseller.component';
+import { DashformComponent } from './dashform/dashform.component';
 
 
 @NgModule({
@@ -19,6 +21,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomePageComponent,
     RegisterComponent,
     DescriptionOfferComponent,
+    DashsellerComponent,
+    DashformComponent,
     
   ],
   imports: [

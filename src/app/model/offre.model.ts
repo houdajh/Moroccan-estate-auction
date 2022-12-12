@@ -6,4 +6,6 @@ export class Offre {
     initialprice!:number
     debutAuction!:string
     duration!:string
+    images!:Array<String>
+
 }
