@@ -2,10 +2,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HomePageComponent } from '../home-page/home-page.component';
 import { Appuser } from '../model/appuser.model';
 import { Login } from '../model/login.model';
 import { User } from '../model/user.model';
 import { RegistrationService } from '../services/registration.service';
+import { SharedServiceService } from '../services/shared-service.service';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +22,7 @@ export class RegisterComponent implements OnInit {
   parentSelector: boolean = false;
   public currentuser : Appuser = new Appuser();
 
-  constructor(private registrationService: RegistrationService, private router : Router){};
+  constructor(private registrationService: RegistrationService,private sharedService : SharedServiceService, private router : Router){};
   @ViewChild('myForm') form!: NgForm;
   @ViewChild('myForm2') form2!: NgForm;
   @ViewChild('myDialog', { static: true }) dialog:any;
@@ -28,7 +30,12 @@ export class RegisterComponent implements OnInit {
   @Output() notify: EventEmitter<any> = new EventEmitter<any>();
 
   async ngOnInit(){
-    this.getCurrentUser();
+    await this.getCurrentUser();
+    //this.currentuser = this.sharedService.getMessage();
+    //console.log('receive : ' + this.sharedService.getMessage());
+
+    
+    
   }
 
   options = [
@@ -39,13 +46,12 @@ export class RegisterComponent implements OnInit {
     disableSelect = new FormControl(false);
     
 
-    public getCurrentUser(): void {
-      this.registrationService.getUser().subscribe(
+    public async getCurrentUser(): Promise<void> {
+       this.registrationService.getUser().subscribe(
         (response: Appuser) => {
           this.currentuser = response;
-  
+          console.log(this.currentuser.firstName);
           console.log(this.currentuser);
-  
         },
         (error: HttpErrorResponse) => {
           alert(error.message);
@@ -81,17 +87,20 @@ export class RegisterComponent implements OnInit {
     console.log(this.addedUser);
     this.saveUser(this.addedUser);
     console.log(this.registrationService.addUser(this.addedUser));
-    //this.router.navigate(['/categoryManagement']);
+    this.router.navigate(['/homePage']);
 
   }
-  saveLogin(login : Login) {
+
+  saveLogin(login : Login)  {
     this.errors = [];
     this.registrationService.loginUser(login)
       .subscribe(data => {
           var win_timer = setInterval(function() {
-            console.log(this.registrationService.loginUser(login));
-            //window.location.reload();
+
+            window.location.reload();
             clearInterval(win_timer);
+            console.log("hiiii3");
+            console.log(this.currentuser);
             
           }, 100); this.t;
         },
@@ -99,13 +108,20 @@ export class RegisterComponent implements OnInit {
           this.errors = error.error.errors;
         });
   }
-  onSubmit2(){
+  
+  
+  async onSubmit2(){
     this.addedLogin.usernameOrEmail=this.form2.value.userDetails2.usernameOrEmail;
     this.addedLogin.password=this.form2.value.userDetails2.password;
 
+    
     console.log(this.addedLogin);
     this.saveLogin(this.addedLogin);
-    //this.router.navigate(['/homePage']);
+    
+    this.router.navigate(['/homePage']);
+    //console.log(this.currentuser);
+    //this.sharedService.setMessage(this.currentuser);
+    //console.log('receive : ' + this.sharedService.getMessage().firstName);
 
   }
 

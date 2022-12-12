@@ -72,9 +72,11 @@
                     <div class="hero-text-tablecell">
                         <p class="subtitle">World's Most Popular</p>
                         <h1>Real Estate Auction</h1>
+                        <h1 *ngIf="this.currentuser!=null">Welcome {{this.currentuser.firstName}}</h1>
                         <div class="hero-btns">
-                            <a [routerLink]="'/register'" class="boxed-btn">Sign In</a>
-                            <a [routerLink]="'/register'" class="bordered-btn">Sign Up</a>
+                            <a *ngIf="this.currentuser==null" [routerLink]="'/register'" class="boxed-btn">Sign In</a>
+                            <a *ngIf="this.currentuser==null" [routerLink]="'/register'" class="bordered-btn">Sign Up</a>
+                            <a *ngIf="this.currentuser!=null" (click)="getLogout();" class="bordered-btn">Sign Out</a>
                         </div>
                     </div>
                 </div>

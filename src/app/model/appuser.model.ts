@@ -12,9 +12,16 @@ export class Appuser {
     locked!:boolean
     enabled!:boolean
     username!:string
-    authorities!:ArrayType
+    authorities!:any
     accountNonExpired!:boolean
     credentialsNonExpired!:boolean
     accountNonLocked!:boolean
 
 }
+export enum State {
+    init, 
+    view, 
+    edit, 
+    create, 
+    wait
+  }
