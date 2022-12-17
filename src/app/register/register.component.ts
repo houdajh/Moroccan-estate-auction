@@ -31,8 +31,6 @@ export class RegisterComponent implements OnInit {
 
   async ngOnInit(){
     await this.getCurrentUser();
-    //this.currentuser = this.sharedService.getMessage();
-    //console.log('receive : ' + this.sharedService.getMessage());
 
     
     
@@ -87,7 +85,9 @@ export class RegisterComponent implements OnInit {
     console.log(this.addedUser);
     this.saveUser(this.addedUser);
     console.log(this.registrationService.addUser(this.addedUser));
-    this.router.navigate(['/homePage']);
+   alert("votre compte est bien enregistré");
+
+   window.location.reload();
 
   }
 

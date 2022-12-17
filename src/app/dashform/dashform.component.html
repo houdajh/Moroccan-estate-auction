@@ -94,25 +94,28 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Fill the form</h4>
+                    
                     <form class="forms-sample">
+                      <form #myForm="ngForm"   ngNativeValidate>
+                        <div ngModelGroup="offerDetails" #offerDetail="ngModelGroup">
                       <div class="form-group">
                         <label for="exampleInputName1">Title</label>
-                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" />
+                        <input type="text" class="form-control" name="title" id="title" [(ngModel)]="this.addedOffer.title" placeholder="Title" />
                       </div>
                       <br>
                       <div class="form-group">
                         <label for="exampleInputPassword4">Address</label>
-                        <input type="text" class="form-control" id="exampleInputPassword4" placeholder="Password" />
+                        <input type="text" class="form-control" name="address" id="address" [(ngModel)]="this.addedOffer.address" placeholder="Address" />
                       </div>
                       <br>
                       <div class="form-group">
                         <label for="exampleInputPassword4">Initial Price</label>
-                        <input type="text" class="form-control" id="exampleInputPassword4" placeholder="Password" />
+                        <input type="text" class="form-control" name="initialprice" id="initialprice" [(ngModel)]="this.addedOffer.initialprice" placeholder="Initial Price" />
                       </div>
                       <br>
                       <div class="form-group">
-                        <label for="exampleInputPassword4">Duration</label>
-                        <input type="text" class="form-control" id="exampleInputPassword4" placeholder="Password" />
+                        <label for="exampleInputPassword4">Deadline</label>
+                        <input type="date" class="form-control" name="duration" id="duration" [(ngModel)]="this.addedOffer.duration" placeholder="Deadline" />
                       </div>
                       <br>
                       <div class="form-group">
@@ -127,22 +130,25 @@
                       </div>
                       <br>
                       <div class="form-group">
-                        <label for="exampleInputCity1">City</label>
-                        <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location" />
+                        <label for="exampleInputCity1">Start of Auction</label>
+                        <input type="date" class="form-control" name="debutAuction" id="debutAuction" [(ngModel)]="this.addedOffer.debutAuction" placeholder="Start of Auction" />
                       </div>
                       <br>
                       <div class="form-group">
                         <label for="exampleTextarea1">Description</label>
                         <textarea
                           class="form-control"
-                          id="exampleTextarea1"
+                          name="description" id="description" [(ngModel)]="this.addedOffer.description"
                           rows="4"
                         ></textarea>
                       </div>
                       <br>
-                      <button type="submit" class="btn btn-primary mr-2"> Submit </button>
+                      <button (click)="onSubmit();" class="btn btn-primary mr-2"> Submit </button>
                       <button class="btn btn-light">Cancel</button>
+                    </div>
+                  </form>
                     </form>
+                     
                   </div>
                 </div>
               </div>
