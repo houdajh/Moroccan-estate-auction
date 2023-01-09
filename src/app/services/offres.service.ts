@@ -20,4 +20,8 @@ export class OffresService {
   public addOffer(offer: Offre): Observable<Offre> {
     return this.http.post<Offre>(`${this.apiServerURL}/offers/add`, offer);
   }
+
+  getofferById(offerId: number) : Observable<Offre> {
+    return this.http.get<Offre>(`${this.apiServerURL}/offers//find/${offerId}`);
+  }
 }

@@ -68,8 +68,9 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <div class="breadcrumb-text">
-                    <p>See more Details</p>
+                    <p>See more Details </p>
                     <h1>Moroccan estate auction</h1>
+                    <h1>{{offerSelected.title}}</h1>
                 </div>
             </div>
         </div>
@@ -88,9 +89,11 @@
             </div>
             <div class="col-md-7">
                 <div class="single-product-content">
-                    <h3>Green apples have polyphenols</h3>
-                    <p class="single-product-pricing"><span>Per Kg</span> $50</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta sint dignissimos, rem commodi cum voluptatem quae reprehenderit repudiandae ea tempora incidunt ipsa, quisquam animi perferendis eos eum modi! Tempora, earum.</p>
+                    <h3 *ngIf="offerSelected.title">{{offerSelected.title}}</h3>
+                    <p *ngIf="offerSelected.initialprice" class="single-product-pricing"><span></span> ${{offerSelected.initialprice}}</p>
+                    <p *ngIf="offerSelected.description">{{offerSelected.description}}</p>
+                    <p *ngIf="offerSelected.debutAuction">{{offerSelected.debutAuction}}</p>
+                    <p *ngIf="offerSelected.duration">Duration :{{offerSelected.duration}}</p>
                     <div class="single-product-form">
                         <form action="index.html">
                             <input type="number" placeholder="0">

@@ -18,6 +18,7 @@ export class HomePageComponent implements OnInit {
   public logout : String=new String();
   receivedReceipt : Appuser;
   public currentuser : Appuser = new Appuser();
+  public offreId:number = 3
 
   constructor(private registrationService: RegistrationService, private sharedService : SharedServiceService,
     private offreService: OffresService ,private router : Router){}

@@ -8,7 +8,7 @@ import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {path:'homePage',component: HomePageComponent},
-  {path:'description',component: DescriptionOfferComponent},
+  {path:'description/:id',component: DescriptionOfferComponent},
   {path:'register',component: RegisterComponent},
   {path:'dashseller',component: DashsellerComponent},
   {path:'dashform',component: DashformComponent}

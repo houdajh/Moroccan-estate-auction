@@ -104,11 +104,11 @@
             <div class="col  text-center " *ngFor="let offre of offres;">
                 <div class="single-product-item" >
                     <div class="product-image" >
-                        <a [routerLink]="'/description'"><img src={{offre.images[0]}} alt=""></a>
+                        <a [routerLink]="['/description']"><img src={{offre.images[0]}} alt=""></a>
                     </div>
                     <h3>{{offre.title}}</h3>
                     <p class="product-price"> {{offre.initialprice}}dh </p>
-                    <a [routerLink]="'/description'" class="cart-btn"><i class="fas fa-eye"></i> Voir</a>
+                    <a  [routerLink]="['/description', offre.id]" class="cart-btn"><i class="fas fa-eye"></i> Voir</a>
                 </div>
             </div>
     </div>
