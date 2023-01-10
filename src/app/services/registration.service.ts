@@ -35,6 +35,10 @@ export class RegistrationService {
   public getLogout():Observable<any>{
     return this.http.get<any>(`${this.apiServerURL}/api/v1/registration/logout`)
   }
+
+  public getUsers():Observable<any>{
+    return this.http.get<any>(`${this.apiServerURL}/api/v1/registration/allUser`)
+  }
  
 
 }

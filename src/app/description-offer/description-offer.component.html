@@ -1,3 +1,10 @@
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="shortcut icon" href="/assets/images/favicon.png" />
+  </head>
 <!-- header -->
 <div class="top-header-area" id="sticker">
     <div class="container">
@@ -68,9 +75,10 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <div class="breadcrumb-text">
+                    <p>{{this.currentuser.firstName}} </p>
                     <p>See more Details </p>
                     <h1>Moroccan estate auction</h1>
-                    <h1>{{offerSelected.title}}</h1>
+                    <h1 *ngIf="offerSelected.title!=undefined">{{offerSelected.title}}</h1>
                 </div>
             </div>
         </div>
@@ -92,66 +100,67 @@
                     <h3 *ngIf="offerSelected.title">{{offerSelected.title}}</h3>
                     <p *ngIf="offerSelected.initialprice" class="single-product-pricing"><span></span> ${{offerSelected.initialprice}}</p>
                     <p *ngIf="offerSelected.description">{{offerSelected.description}}</p>
-                    <p *ngIf="offerSelected.debutAuction">{{offerSelected.debutAuction}}</p>
-                    <p *ngIf="offerSelected.duration">Duration :{{offerSelected.duration}}</p>
+                    <p *ngIf="offerSelected.debutAuction"class="single-product-pricing">{{offerSelected.debutAuction| date:'medium'}}</p><br>
+                    <p *ngIf="offerSelected.duration" class="single-product-pricing">To: {{offerSelected.duration| date:'medium'}}</p>
                     <div class="single-product-form">
-                        <form action="index.html">
-                            <input type="number" placeholder="0">
+                        <form  #myForm="ngForm"   ngNativeValidate>
+                            <div ngModelGroup="bidDetails" #bidDetail="ngModelGroup">
+                            <input name="price" id="price" [(ngModel)]="this.addedBid.price" type="number" placeholder="0">
+                        </div>
+                        <a (click)="onSubmit();" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                         </form>
-                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                        <p><strong>Categories: </strong>Fruits, Organic</p>
+                       
+                        
                     </div>
-                    <h4>Share:</h4>
-                    <ul class="product-share">
-                        <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href=""><i class="fab fa-twitter"></i></a></li>
-                        <li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
-                        <li><a href=""><i class="fab fa-linkedin"></i></a></li>
-                    </ul>
+                    
                 </div>
             </div>
         </div>
     </div>
 </div>
 <!-- end single product -->
-
-<!-- more products -->
-<div class="more-products mb-150">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 offset-lg-2 text-center">
-                <div class="section-title">	
-                    <h3><span class="orange-text">Related</span> Auctions</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
-                </div>
-            </div>
+<div class="row" class="single-product mt-200 mb-200">
+    <div class="col-xl-8 col-sm-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body px-0 overflow-auto">
+          <h4 class="card-title pl-4">Bidding History</h4>
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="bg-light">
+                <tr>
+                  <th>Customer</th>
+                  <th>Previews Prices</th>
+                  <th>State </th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item2 of auctionsbyofferid | orderBy: '-price': reverse |paginate:{itemsPerPage:10, currentPage:p};">
+                  <td>{{getuserbyid(item2.iduser)}}</td>
+                  
+                  <td *ngIf="item2.price!=undefined" >${{item2.price}}</td>
+                  <td>
+                    <div *ngIf="item2.state==true"class="badge badge-inverse-danger"> Completed  </div>
+                    <div *ngIf="item2.state==false"class="badge badge-inverse-success"> Pending </div>
+                  </td>
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+          <div id="ctl0_CONTENU_PAGE_ctl0_panelBottom" class="repeater-header-right">
+            <!--Debut Pagnination Bottom-->
+            <pagination-controls  (pageChange)="p=$event"></pagination-controls>
+            <br><br><br>
+            <!--Fin Pagnination Bottom-->
+          </div>
         </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-6 text-center">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a [routerLink]="'/description'"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
-                    </div>
-                    <h3>Strawberry</h3>
-                    <p class="product-price"><span>Per Kg</span> 85$ </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a [routerLink]="'/description'"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
-                    </div>
-                    <h3>Berry</h3>
-                    <p class="product-price"><span>Per Kg</span> 70$ </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                </div>
-            </div>
-        
-        </div>
+      </div>
     </div>
-</div>
-<!-- end more products -->
+    
+  </div>
+
+
 
 
 

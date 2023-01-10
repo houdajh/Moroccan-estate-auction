@@ -13,7 +13,8 @@ import { MatButtonModule, MatFormFieldModule, MatIconModule, MatListModule, MatO
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashsellerComponent } from './dashseller/dashseller.component';
 import { DashformComponent } from './dashform/dashform.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2OrderModule } from 'ng2-order-pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,10 @@ import { DashformComponent } from './dashform/dashform.component';
     MatListModule ,
     MatStepperModule,
     MatInputModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxPaginationModule,
+    Ng2OrderModule
+
   ],
   exports: [
     MatButtonModule,

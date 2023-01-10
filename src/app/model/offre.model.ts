@@ -4,8 +4,8 @@ export class Offre {
     description!:string
     address!:string
     initialprice!:number
-    debutAuction!:string
-    duration!:string
+    debutAuction!:Date
+    duration!:Date
     images!:Array<String>
 
 }
