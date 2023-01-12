@@ -24,4 +24,8 @@ export class OffresService {
   getofferById(offerId: number) : Observable<Offre> {
     return this.http.get<Offre>(`${this.apiServerURL}/offers//find/${offerId}`);
   }
+  getofferByIdUser(iduser: number) : Observable<any> {
+    return this.http.get<any>(`${this.apiServerURL}/offers/getOffersByUser/${iduser}`);
+  }
+
 }

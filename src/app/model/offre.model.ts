@@ -6,6 +6,7 @@ export class Offre {
     initialprice!:number
     debutAuction!:Date
     duration!:Date
-    images!:Array<String>
+    iduser!:number;
+    imagename!:any
 
 }

@@ -1,4 +1,4 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Appuser } from '../model/appuser.model';
@@ -19,9 +19,11 @@ export class HomePageComponent implements OnInit {
   receivedReceipt : Appuser;
   public currentuser : Appuser = new Appuser();
   public offreId:number = 3
+  dbImage: any;
+  postResponse: any;
 
   constructor(private registrationService: RegistrationService, private sharedService : SharedServiceService,
-    private offreService: OffresService ,private router : Router){}
+    private offreService: OffresService ,private router : Router,private httpClient: HttpClient){}
 
 async ngOnInit() : Promise<void>{
   this.getOffres();
@@ -46,8 +48,20 @@ public getOffres(): void {
   this.offreService.getOffers().subscribe(
     (response: Offre[]) => {
       this.offres = response;
+    console.log(this.offres)
 
-      console.log(this.offres);
+    for(let offre of this.offres ){
+      this.httpClient.get('http://localhost:8889/images/get/image/info/' + offre.imagename)
+      .subscribe(
+        res => {
+          this.postResponse = res;
+          offre.imagename = 'data:image/jpeg;base64,' + this.postResponse.image;
+        }
+      );
+      offre.imagename='data:image/jpeg;base64,' + offre.imagename;
+      console.log("coco"+offre.imagename)
+    }
+
       this.receivedReceipt = this.sharedService.getMessage();
     console.log('receive : ',this.receivedReceipt);
 

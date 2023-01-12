@@ -5,13 +5,15 @@ import { DashsellerComponent } from './dashseller/dashseller.component';
 import { DescriptionOfferComponent } from './description-offer/description-offer.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { RegisterComponent } from './register/register.component';
+import {SelleroffersComponent} from './selleroffers/selleroffers.component'
 
 const routes: Routes = [
   {path:'homePage',component: HomePageComponent},
   {path:'description/:id',component: DescriptionOfferComponent},
   {path:'register',component: RegisterComponent},
   {path:'dashseller',component: DashsellerComponent},
-  {path:'dashform',component: DashformComponent}
+  {path:'dashform',component: DashformComponent},
+  {path:'selleroffers',component: SelleroffersComponent}
 ];
 
 @NgModule({
@@ -21,4 +23,4 @@ const routes: Routes = [
 
 
 export class AppRoutingModule { }
-export const routingComponents = [ HomePageComponent , DescriptionOfferComponent, RegisterComponent,DashsellerComponent, DashformComponent]
+export const routingComponents = [ HomePageComponent , DescriptionOfferComponent, RegisterComponent,DashsellerComponent, DashformComponent,SelleroffersComponent]

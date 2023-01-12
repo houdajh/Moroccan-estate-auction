@@ -4,7 +4,18 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="/assets/css/style.css" />
     <link rel="shortcut icon" href="/assets/images/favicon.png" />
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyBlusny36BWvYqhlnIgl42wDQlOgTf-fzg&libraries=places"></script>
   </head>
+  <style>
+    agm-map {
+     height: 500px;
+   }
+  
+
+#map {
+  height: 500px;
+}
+  </style>
 <!-- header -->
 <div class="top-header-area" id="sticker">
     <div class="container">
@@ -92,7 +103,7 @@
         <div class="row">
             <div class="col-md-5">
                 <div class="single-product-img">
-                    <img src="assets/img/products/product-img-5.jpg" alt="">
+                    <img height="500px" width="400px" [src]="offerSelected.imagename" alt="">
                 </div>
             </div>
             <div class="col-md-7">
@@ -109,18 +120,31 @@
                         </div>
                         <a (click)="onSubmit();" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                         </form>
-                       
                         
+                        
+                          <br> <br> <br>
+                     <agm-map [latitude]="lat" [longitude]="lng">
+                            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                          </agm-map>
+                          
+                          <br> <br> <br>
+                          <div id="map"></div>
+                          <br> <br> <br>
                     </div>
                     
-                </div>
+                    
             </div>
+            
+            
         </div>
     </div>
+    
 </div>
+
+
 <!-- end single product -->
-<div class="row" class="single-product mt-200 mb-200">
-    <div class="col-xl-8 col-sm-6 grid-margin stretch-card">
+<div class="row" class="single-product mt-400 mb-400">
+    <div >
       <div class="card">
         <div class="card-body px-0 overflow-auto">
           <h4 class="card-title pl-4">Bidding History</h4>
@@ -159,8 +183,6 @@
     </div>
     
   </div>
-
-
 
 
 
@@ -211,6 +233,7 @@
 </div>
 <!-- end footer -->
 
+
 <!-- copyright -->
 <div class="copyright">
     <div class="container">
@@ -235,7 +258,11 @@
     </div>
 </div>
 <!-- end copyright -->
-
+<script type="module" src="./index.ts"></script>
+<script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6KXBkQGXUsIaF6u96_Q4EzUG8s0Q9OWE&callback=initMap&v=weekly"
+      defer
+    ></script>
 <!-- jquery -->
 <script src="assets/js/jquery-1.11.3.min.js"></script>
 <!-- bootstrap -->
